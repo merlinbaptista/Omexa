@@ -43,8 +43,22 @@ Omexa is an AI-powered companion designed to support emotional well-being, boost
 1. Clone this repository:
    ```bash
    git clone https://github.com/yourusername/omexa.git
-2.Install dependencies:
-  ```bash
-  cd omexa
-  npm install
+2. Install dependencies:
+   ```bash
+   cd omexa
+   npm install
+3. Run the app:
+   ```bash
+   npm start
+
+## Challenges Overcome
+- **Multilingual Support:** Adaptive AI responses for language-specific nuances.
+- **Voice Recognition:** Enhanced accuracy with noise-canceling techniques.
+- **User Engagement:** Added chat stickers and themes for better interaction.
+
+## License
+**MIT License**
+ ```vbnet
+Feel free to copy and paste this directly into your GitHub repository's README! Let me know if you need further tweaks!
+
 
