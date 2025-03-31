@@ -48,4 +48,3 @@ Omexa is an AI-powered companion designed to support emotional well-being, boost
   cd omexa
   npm install
 
-
