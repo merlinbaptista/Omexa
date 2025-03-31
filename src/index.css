@@ -77,7 +77,6 @@
   }
 }
 
-/* Animations */
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -134,18 +133,6 @@
   }
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animated Classes */
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -163,50 +150,7 @@
   animation: gradient-shift 3s ease infinite;
 }
 
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
-}
-
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
 
-/* Background animation with lavender color */
-.bg-gradient-animation {
-  background: linear-gradient(-45deg, #e6e6fa, #d8bfd8, #dcd0ff, #f0e6ff);
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-  min-height: 100vh;
-}
-
-/* Scrollbar styles */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(166, 142, 245, 0.3);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(166, 142, 245, 0.5);
-}
-
-/* Customize scrollbars in the chat area */
-.chat-scrollarea::-webkit-scrollbar {
-  width: 5px;
-}
-
-.chat-scrollarea::-webkit-scrollbar-thumb {
-  background: rgba(166, 142, 245, 0.2);
-}
-
-.chat-scrollarea::-webkit-scrollbar-thumb:hover {
-  background: rgba(166, 142, 245, 0.4);
-}

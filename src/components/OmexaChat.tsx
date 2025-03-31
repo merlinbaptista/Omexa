@@ -340,7 +340,7 @@ const OmexaChat: React.FC = () => {
         </CardTitle>
       </CardHeader>
       
-      
+      <CardContent className="flex-1 overflow-hidden">
         <div className="h-full flex flex-col">
           <Tabs defaultValue="chat" className="flex-1 flex flex-col">
             <TabsList className="self-center mb-2">
@@ -349,7 +349,7 @@ const OmexaChat: React.FC = () => {
             </TabsList>
             
             <TabsContent value="chat" className="flex-1 overflow-hidden p-2">
-              <ScrollArea className="h-[400px] pr-4 chat-scrollarea">
+              <ScrollArea className="h-[400px] pr-4">
                 <div className="space-y-4">
                   {messages.map((message) => (
                     <div 
@@ -459,8 +459,9 @@ const OmexaChat: React.FC = () => {
             </TabsContent>
           </Tabs>
         </div>
+      </CardContent>
       
-      
+      <CardFooter className="border-t pt-4">
         {isEmergencyMode ? (
           <div className="w-full space-y-3">
             <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-900">
@@ -584,7 +585,7 @@ const OmexaChat: React.FC = () => {
             </div>
           </div>
         )}
-      
+      </CardFooter>
     </Card>
   );
 };
