@@ -7,10 +7,10 @@ import { BookHeart } from 'lucide-react';
 
 const Relax = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
       
-      <main className="container px-4 py-6 mx-auto max-w-6xl">
+      <main className="container px-4 py-6 mx-auto max-w-6xl animate-fade-in">
         <section id="relax" className="mb-16">
           <div className="flex items-center gap-2 mb-6">
             <BookHeart className="h-6 w-6 text-primary" />

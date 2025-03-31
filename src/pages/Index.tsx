@@ -8,15 +8,26 @@ import { getRandomAdvice } from '@/utils/adviceData';
 import { Button } from '@/components/ui/button';
 import { Sparkles, Brain, BookHeart, Calendar, MessageCircle } from 'lucide-react';
 import OmexaChat from '@/components/OmexaChat';
+import VirtualPet from '@/components/VirtualPet';
+import ArticlesSection from '@/components/ArticlesSection';
 
-const Index = () => {
+interface UserProfile {
+  name: string;
+  age: number;
+  joinedAt: string;
+}
+
+interface IndexProps {
+  userProfile: UserProfile | null;
+}
+
+const Index: React.FC<IndexProps> = ({ userProfile }) => {
   const [advice, setAdvice] = React.useState(() => getRandomAdvice(3));
   
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return "Good morning";
-    if (hour < 18) return "Good afternoon";
-    return "Good evening";
+    const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+    return userProfile ? `${greeting}, ${userProfile.name}` : greeting;
   };
   
   useEffect(() => {
@@ -24,10 +35,10 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
       
-      <main className="container px-4 py-6 mx-auto max-w-6xl">
+      <main className="container px-4 py-6 mx-auto max-w-6xl animate-fade-in">
         {/* Hero Section */}
         <section id="home" className="mb-12 text-center py-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent animate-gradient-shift">
@@ -88,11 +99,11 @@ const Index = () => {
             <h2 className="text-2xl font-bold">{getGreeting()}</h2>
           </div>
           
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             <MoodTracker />
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Personalized For You</h3>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4">
                 {advice.map((item) => (
                   <AdviceCard 
                     key={item.id}
@@ -103,7 +114,13 @@ const Index = () => {
                 ))}
               </div>
             </div>
+            <VirtualPet />
           </div>
+        </section>
+        
+        {/* Articles Section */}
+        <section id="articles" className="mb-16">
+          <ArticlesSection limit={3} />
         </section>
         
         {/* Quick Chat Preview */}
