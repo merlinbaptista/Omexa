@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Smile, Heart, Star, Check, MessageCircle } from 'lucide-react';
+import { Smile, Heart, Star, Check, MessageCircle, X } from 'lucide-react';
 
 const stickers = [
   { icon: <Smile className="h-6 w-6 text-yellow-500" />, label: "Smile", color: "bg-yellow-100" },
