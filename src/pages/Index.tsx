@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import MoodTracker from '@/components/MoodTracker';
@@ -14,11 +13,12 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Sparkles, Brain, BookHeart, Calendar, MessageCircle } from 'lucide-react';
 
-// Import new components
+// Import components
 import SmartReminders from '@/components/SmartReminders';
 import ChatStickers from '@/components/ChatStickers';
 import MemoryPatchGame from '@/components/MemoryPatchGame';
 import VisualMoodTracker from '@/components/VisualMoodTracker';
+import OmexaChat from '@/components/OmexaChat';
 
 const Index = () => {
   const [advice, setAdvice] = useState(() => getRandomAdvice(3));
@@ -30,7 +30,7 @@ const Index = () => {
     if (hour < 18) return "Good afternoon";
     return "Good evening";
   };
-
+  
   useEffect(() => {
     document.title = "Omexa - Your AI Companion";
   }, []);
@@ -48,6 +48,48 @@ const Index = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Your AI companion for personal growth, confidence building, and everyday wellbeing.
           </p>
+        </section>
+        
+        {/* Personal Chat Assistant Section - NEW */}
+        <section id="chat-assistant" className="mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <MessageCircle className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-bold">Your Personal AI Companion</h2>
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium">Talk to Omexa</h3>
+              <p className="text-muted-foreground">
+                Omexa is here to support you through any situation, whether you need advice, 
+                emotional support, or just a friendly chat. I can help with:
+              </p>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <Sparkles className="h-4 w-4 mt-1 text-primary" />
+                  <span>Daily motivation and confidence building</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Brain className="h-4 w-4 mt-1 text-primary" />
+                  <span>Advice for overcoming stage fright and anxiety</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <BookHeart className="h-4 w-4 mt-1 text-primary" />
+                  <span>Personalized resources and articles</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Calendar className="h-4 w-4 mt-1 text-primary" />
+                  <span>Emergency support when you need it most</span>
+                </li>
+              </ul>
+              <p className="text-sm text-muted-foreground italic">
+                Try voice input by clicking the microphone button and speak naturally - Omexa will analyze your 
+                tone and respond appropriately.
+              </p>
+            </div>
+            
+            <OmexaChat />
+          </div>
         </section>
         
         {/* Daily Check-in Section */}
