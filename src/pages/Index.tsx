@@ -12,7 +12,13 @@ import { getRandomAdvice } from '@/utils/adviceData';
 import { getRandomQuiz } from '@/utils/quizData';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Sparkles, Brain, BookHeart } from 'lucide-react';
+import { Sparkles, Brain, BookHeart, Calendar, MessageCircle } from 'lucide-react';
+
+// Import new components
+import SmartReminders from '@/components/SmartReminders';
+import ChatStickers from '@/components/ChatStickers';
+import MemoryPatchGame from '@/components/MemoryPatchGame';
+import VisualMoodTracker from '@/components/VisualMoodTracker';
 
 const Index = () => {
   const [advice, setAdvice] = useState(() => getRandomAdvice(3));
@@ -52,8 +58,9 @@ const Index = () => {
           </div>
           
           <div className="grid gap-6 md:grid-cols-2">
-            <div>
+            <div className="space-y-6">
               <MoodTracker />
+              <VisualMoodTracker />
             </div>
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Personalized For You</h3>
@@ -71,6 +78,51 @@ const Index = () => {
           </div>
         </section>
         
+        {/* Smart Reminders Section */}
+        <section id="reminders" className="mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <Calendar className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-bold">Smart Reminders</h2>
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2">
+            <SmartReminders />
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium">Stay on Track</h3>
+              <p className="text-muted-foreground">
+                Smart Reminders help you keep track of your tasks, goals, and motivational activities. 
+                Set reminders for important events, practice sessions, or self-care activities.
+              </p>
+              <p className="text-muted-foreground">
+                Omexa will help you manage your time and priorities, ensuring you stay focused on 
+                your personal growth journey.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        {/* Interactive Companion Section */}
+        <section id="companion" className="mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <MessageCircle className="h-6 w-6 text-primary" />
+            <h2 className="text-2xl font-bold">Interactive Companion</h2>
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium">Express Yourself</h3>
+              <p className="text-muted-foreground">
+                Make your conversations with Omexa more lively and expressive with Chat Stickers and Reactions.
+              </p>
+              <p className="text-muted-foreground">
+                These interactive elements help create a more personalized and engaging experience, 
+                making your journey with Omexa more enjoyable.
+              </p>
+            </div>
+            <ChatStickers />
+          </div>
+        </section>
+        
         {/* Activities Section */}
         <section id="activities" className="mb-16">
           <div className="flex items-center gap-2 mb-6">
@@ -82,6 +134,7 @@ const Index = () => {
             <TabsList className="mb-6">
               <TabsTrigger value="confidence">Confidence Building</TabsTrigger>
               <TabsTrigger value="quiz">Quiz Yourself</TabsTrigger>
+              <TabsTrigger value="memory">Memory Games</TabsTrigger>
               <TabsTrigger value="progress">Track Progress</TabsTrigger>
             </TabsList>
             
@@ -126,6 +179,23 @@ const Index = () => {
                       Mindset Questions
                     </Button>
                   </div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="memory" className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <MemoryPatchGame />
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium">Boost Cognitive Function</h3>
+                  <p className="text-muted-foreground">
+                    Memory games help improve focus, concentration, and cognitive abilities.
+                  </p>
+                  <p className="text-muted-foreground">
+                    Regular practice can enhance your short-term memory and help you stay mentally sharp,
+                    which contributes to better performance in presentations, interviews, and daily tasks.
+                  </p>
+                  <Button className="mt-2">Try Different Game</Button>
                 </div>
               </div>
             </TabsContent>
