@@ -1,2 +1,3 @@
 
-# This is a placeholder. Users will need to upload their logo image.
+# This image will be replaced with the uploaded logo
+# When the user uploads an image, it's automatically saved to public/lovable-uploads/[filename]

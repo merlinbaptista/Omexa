@@ -1,9 +1,9 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { 
   Smile, 
   Send, 
@@ -16,7 +16,8 @@ import {
   HelpCircle, 
   ThumbsUp,
   MessageCircle,
-  UserCircle
+  UserCircle,
+  X
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -347,110 +348,114 @@ const OmexaChat: React.FC = () => {
               <TabsTrigger value="articles">Resources</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="chat" className="flex-1 overflow-y-auto p-2">
-              <div className="space-y-4">
-                {messages.map((message) => (
-                  <div 
-                    key={message.id} 
-                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
+            <TabsContent value="chat" className="flex-1 overflow-hidden p-2">
+              <ScrollArea className="h-[400px] pr-4">
+                <div className="space-y-4">
+                  {messages.map((message) => (
                     <div 
-                      className={`max-w-[80%] p-3 rounded-lg ${
-                        message.sender === 'user' 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'bg-muted'
-                      } ${message.isEmergency ? 'border-l-4 border-red-500' : ''}`}
+                      key={message.id} 
+                      className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      {message.sender === 'omexa' && (
-                        <div className="flex items-center gap-2 mb-1">
-                          <Smile className="h-5 w-5 text-primary" />
-                          <span className="font-semibold">Omexa</span>
-                        </div>
-                      )}
-                      
-                      <div className="whitespace-pre-wrap">
-                        {message.sticker && <span className="text-2xl mr-2">{message.sticker}</span>}
-                        {message.text}
-                      </div>
-                      
-                      {message.attachment && (
-                        <div className="mt-2">
-                          <img 
-                            src={message.attachment} 
-                            alt="Attached" 
-                            className="max-w-full rounded-md"
-                          />
-                        </div>
-                      )}
-                      
-                      {message.suggestions && message.suggestions.length > 0 && (
-                        <div className="mt-3 space-y-2">
-                          <p className="text-sm font-medium">Suggestions:</p>
-                          <ul className="text-sm space-y-1">
-                            {message.suggestions.map((suggestion, idx) => (
-                              <li key={idx} className="flex items-start gap-1">
-                                <ThumbsUp className="h-4 w-4 shrink-0 mt-0.5" />
-                                <span>{suggestion}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      
-                      {message.articles && message.articles.length > 0 && (
-                        <div className="mt-3">
-                          <p className="text-sm font-medium flex items-center gap-1">
-                            <Newspaper className="h-4 w-4" />
-                            Recommended readings:
-                          </p>
-                          <div className="text-sm mt-1 space-y-1">
-                            {message.articles.slice(0, 2).map((article, idx) => (
-                              <a 
-                                key={idx} 
-                                href={article.url} 
-                                className="block hover:underline text-blue-600 dark:text-blue-400"
-                              >
-                                {article.title} ({article.source})
-                              </a>
-                            ))}
+                      <div 
+                        className={`max-w-[80%] p-3 rounded-lg ${
+                          message.sender === 'user' 
+                            ? 'bg-primary text-primary-foreground' 
+                            : 'bg-muted'
+                        } ${message.isEmergency ? 'border-l-4 border-red-500' : ''}`}
+                      >
+                        {message.sender === 'omexa' && (
+                          <div className="flex items-center gap-2 mb-1">
+                            <Smile className="h-5 w-5 text-primary" />
+                            <span className="font-semibold">Omexa</span>
                           </div>
+                        )}
+                        
+                        <div className="whitespace-pre-wrap">
+                          {message.sticker && <span className="text-2xl mr-2">{message.sticker}</span>}
+                          {message.text}
                         </div>
-                      )}
-                      
-                      <div className="mt-1 text-xs opacity-70">
-                        {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        
+                        {message.attachment && (
+                          <div className="mt-2">
+                            <img 
+                              src={message.attachment} 
+                              alt="Attached" 
+                              className="max-w-full rounded-md"
+                            />
+                          </div>
+                        )}
+                        
+                        {message.suggestions && message.suggestions.length > 0 && (
+                          <div className="mt-3 space-y-2">
+                            <p className="text-sm font-medium">Suggestions:</p>
+                            <ul className="text-sm space-y-1">
+                              {message.suggestions.map((suggestion, idx) => (
+                                <li key={idx} className="flex items-start gap-1">
+                                  <ThumbsUp className="h-4 w-4 shrink-0 mt-0.5" />
+                                  <span>{suggestion}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        
+                        {message.articles && message.articles.length > 0 && (
+                          <div className="mt-3">
+                            <p className="text-sm font-medium flex items-center gap-1">
+                              <Newspaper className="h-4 w-4" />
+                              Recommended readings:
+                            </p>
+                            <div className="text-sm mt-1 space-y-1">
+                              {message.articles.slice(0, 2).map((article, idx) => (
+                                <a 
+                                  key={idx} 
+                                  href={article.url} 
+                                  className="block hover:underline text-blue-600 dark:text-blue-400"
+                                >
+                                  {article.title} ({article.source})
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        <div className="mt-1 text-xs opacity-70">
+                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-                <div ref={bottomRef} />
-              </div>
+                  ))}
+                  <div ref={bottomRef} />
+                </div>
+              </ScrollArea>
             </TabsContent>
             
             <TabsContent value="articles" className="flex-1 overflow-y-auto">
-              <div className="space-y-4">
-                <h3 className="font-medium">Helpful Resources</h3>
-                
-                {/* Group articles by category */}
-                {Object.entries(moodBasedArticles).map(([category, articles]) => (
-                  <div key={category} className="space-y-2">
-                    <h4 className="text-sm font-medium capitalize">{category} Resources:</h4>
-                    <div className="grid gap-2">
-                      {articles.map((article, idx) => (
-                        <Card key={idx} className="p-3">
-                          <div className="flex gap-2">
-                            <Newspaper className="h-5 w-5 text-primary shrink-0" />
-                            <div>
-                              <h5 className="font-medium text-sm">{article.title}</h5>
-                              <p className="text-xs text-muted-foreground">{article.source}</p>
+              <ScrollArea className="h-[400px]">
+                <div className="space-y-4 p-2">
+                  <h3 className="font-medium">Helpful Resources</h3>
+                  
+                  {/* Group articles by category */}
+                  {Object.entries(moodBasedArticles).map(([category, articles]) => (
+                    <div key={category} className="space-y-2">
+                      <h4 className="text-sm font-medium capitalize">{category} Resources:</h4>
+                      <div className="grid gap-2">
+                        {articles.map((article, idx) => (
+                          <Card key={idx} className="p-3">
+                            <div className="flex gap-2">
+                              <Newspaper className="h-5 w-5 text-primary shrink-0" />
+                              <div>
+                                <h5 className="font-medium text-sm">{article.title}</h5>
+                                <p className="text-xs text-muted-foreground">{article.source}</p>
+                              </div>
                             </div>
-                          </div>
-                        </Card>
-                      ))}
+                          </Card>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </ScrollArea>
             </TabsContent>
           </Tabs>
         </div>

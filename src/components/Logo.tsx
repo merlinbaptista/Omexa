@@ -6,9 +6,9 @@ const Logo: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={cn("flex items-center", className)}>
       <img 
-        src="/logo.png" 
+        src="/lovable-uploads/b892df5e-8b69-44ce-9072-53a4ed452941.png" 
         alt="Omexa" 
-        className="h-10 w-auto animate-float"
+        className="h-10 w-auto"
       />
       <span className="ml-2 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
         Omexa

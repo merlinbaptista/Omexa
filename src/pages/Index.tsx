@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import MoodTracker from '@/components/MoodTracker';
 import AdviceCard from '@/components/AdviceCard';
-import BreathingExercise from '@/components/BreathingExercise';
-import SimpleGame from '@/components/SimpleGame';
-import ProgressTracker from '@/components/ProgressTracker';
-import QuizCard from '@/components/QuizCard';
-import ConfidenceExercise from '@/components/ConfidenceExercise';
 import { getRandomAdvice } from '@/utils/adviceData';
-import { getRandomQuiz } from '@/utils/quizData';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Sparkles, Brain, BookHeart, Calendar, MessageCircle } from 'lucide-react';
-
-// Import components
-import SmartReminders from '@/components/SmartReminders';
-import ChatStickers from '@/components/ChatStickers';
-import MemoryPatchGame from '@/components/MemoryPatchGame';
-import VisualMoodTracker from '@/components/VisualMoodTracker';
 import OmexaChat from '@/components/OmexaChat';
 
 const Index = () => {
-  const [advice, setAdvice] = useState(() => getRandomAdvice(3));
-  const [randomQuiz, setRandomQuiz] = useState(() => getRandomQuiz());
+  const [advice, setAdvice] = React.useState(() => getRandomAdvice(3));
   
   const getGreeting = () => {
     const hour = new Date().getHours();
@@ -50,46 +38,47 @@ const Index = () => {
           </p>
         </section>
         
-        {/* Personal Chat Assistant Section - NEW */}
-        <section id="chat-assistant" className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <MessageCircle className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Your Personal AI Companion</h2>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Talk to Omexa</h3>
+        {/* Feature Cards */}
+        <section className="mb-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Link to="/chat" className="block">
+            <div className="bg-muted/50 hover:bg-muted/80 transition-colors rounded-lg p-6 h-full border">
+              <MessageCircle className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-lg font-medium mb-2">Personal Chat</h3>
               <p className="text-muted-foreground">
-                Omexa is here to support you through any situation, whether you need advice, 
-                emotional support, or just a friendly chat. I can help with:
-              </p>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <Sparkles className="h-4 w-4 mt-1 text-primary" />
-                  <span>Daily motivation and confidence building</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Brain className="h-4 w-4 mt-1 text-primary" />
-                  <span>Advice for overcoming stage fright and anxiety</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <BookHeart className="h-4 w-4 mt-1 text-primary" />
-                  <span>Personalized resources and articles</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Calendar className="h-4 w-4 mt-1 text-primary" />
-                  <span>Emergency support when you need it most</span>
-                </li>
-              </ul>
-              <p className="text-sm text-muted-foreground italic">
-                Try voice input by clicking the microphone button and speak naturally - Omexa will analyze your 
-                tone and respond appropriately.
+                Talk to Omexa about anything - your AI companion is here to support and motivate you.
               </p>
             </div>
-            
-            <OmexaChat />
-          </div>
+          </Link>
+          
+          <Link to="/reminders" className="block">
+            <div className="bg-muted/50 hover:bg-muted/80 transition-colors rounded-lg p-6 h-full border">
+              <Calendar className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-lg font-medium mb-2">Smart Reminders</h3>
+              <p className="text-muted-foreground">
+                Set reminders for important events, practice sessions, or self-care activities.
+              </p>
+            </div>
+          </Link>
+          
+          <Link to="/activities" className="block">
+            <div className="bg-muted/50 hover:bg-muted/80 transition-colors rounded-lg p-6 h-full border">
+              <Brain className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-lg font-medium mb-2">Activities</h3>
+              <p className="text-muted-foreground">
+                Build confidence, quiz yourself, play memory games, and track your progress.
+              </p>
+            </div>
+          </Link>
+          
+          <Link to="/relax" className="block">
+            <div className="bg-muted/50 hover:bg-muted/80 transition-colors rounded-lg p-6 h-full border">
+              <BookHeart className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-lg font-medium mb-2">Relax & Recharge</h3>
+              <p className="text-muted-foreground">
+                Breathing exercises and simple games to help you relax and recharge.
+              </p>
+            </div>
+          </Link>
         </section>
         
         {/* Daily Check-in Section */}
@@ -100,10 +89,7 @@ const Index = () => {
           </div>
           
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-6">
-              <MoodTracker />
-              <VisualMoodTracker />
-            </div>
+            <MoodTracker />
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Personalized For You</h3>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -120,157 +106,19 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Smart Reminders Section */}
-        <section id="reminders" className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <Calendar className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Smart Reminders</h2>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2">
-            <SmartReminders />
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Stay on Track</h3>
-              <p className="text-muted-foreground">
-                Smart Reminders help you keep track of your tasks, goals, and motivational activities. 
-                Set reminders for important events, practice sessions, or self-care activities.
-              </p>
-              <p className="text-muted-foreground">
-                Omexa will help you manage your time and priorities, ensuring you stay focused on 
-                your personal growth journey.
-              </p>
+        {/* Quick Chat Preview */}
+        <section className="mb-16">
+          <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center gap-2">
+              <MessageCircle className="h-6 w-6 text-primary" />
+              <h2 className="text-2xl font-bold">Quick Chat</h2>
             </div>
-          </div>
-        </section>
-        
-        {/* Interactive Companion Section */}
-        <section id="companion" className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <MessageCircle className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Interactive Companion</h2>
+            <Button asChild>
+              <Link to="/chat">Full Chat Experience</Link>
+            </Button>
           </div>
           
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Express Yourself</h3>
-              <p className="text-muted-foreground">
-                Make your conversations with Omexa more lively and expressive with Chat Stickers and Reactions.
-              </p>
-              <p className="text-muted-foreground">
-                These interactive elements help create a more personalized and engaging experience, 
-                making your journey with Omexa more enjoyable.
-              </p>
-            </div>
-            <ChatStickers />
-          </div>
-        </section>
-        
-        {/* Activities Section */}
-        <section id="activities" className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <Brain className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Activities & Exercises</h2>
-          </div>
-          
-          <Tabs defaultValue="confidence" className="w-full">
-            <TabsList className="mb-6">
-              <TabsTrigger value="confidence">Confidence Building</TabsTrigger>
-              <TabsTrigger value="quiz">Quiz Yourself</TabsTrigger>
-              <TabsTrigger value="memory">Memory Games</TabsTrigger>
-              <TabsTrigger value="progress">Track Progress</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="confidence" className="space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <ConfidenceExercise />
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Why This Works</h3>
-                  <p className="text-muted-foreground">
-                    This exercise uses evidence-based techniques from cognitive behavioral therapy to help reframe negative thoughts, build on your existing strengths, and visualize success.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Regular practice of these exercises can help reduce anxiety about public speaking and performance situations by creating new neural pathways.
-                  </p>
-                  <Button className="mt-2">Try Another Exercise</Button>
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="quiz" className="space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <QuizCard 
-                  question={randomQuiz.question}
-                  description={randomQuiz.description}
-                  options={randomQuiz.options}
-                  correctOptionId={randomQuiz.correctOptionId}
-                  explanation={randomQuiz.explanation}
-                />
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Learn Through Reflection</h3>
-                  <p className="text-muted-foreground">
-                    These quizzes help you explore concepts related to confidence, mindset, and emotional wellbeing.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Each question is designed to make you reflect on helpful strategies and approaches that can support your personal growth.
-                  </p>
-                  <div className="grid grid-cols-2 gap-3 mt-4">
-                    <Button variant="outline" onClick={() => setRandomQuiz(getRandomQuiz('confidence'))}>
-                      Confidence Questions
-                    </Button>
-                    <Button variant="outline" onClick={() => setRandomQuiz(getRandomQuiz('mindset'))}>
-                      Mindset Questions
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="memory" className="space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <MemoryPatchGame />
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Boost Cognitive Function</h3>
-                  <p className="text-muted-foreground">
-                    Memory games help improve focus, concentration, and cognitive abilities.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Regular practice can enhance your short-term memory and help you stay mentally sharp,
-                    which contributes to better performance in presentations, interviews, and daily tasks.
-                  </p>
-                  <Button className="mt-2">Try Different Game</Button>
-                </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="progress">
-              <div className="grid gap-6 md:grid-cols-2">
-                <ProgressTracker />
-                <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Your Journey Matters</h3>
-                  <p className="text-muted-foreground">
-                    Tracking your progress helps reinforce positive habits and provides motivation to continue your personal growth journey.
-                  </p>
-                  <p className="text-muted-foreground">
-                    Omexa helps you visualize your consistency and improvement over time, making it easier to stay committed to your wellbeing.
-                  </p>
-                  <Button className="mt-2">View Detailed Stats</Button>
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </section>
-        
-        {/* Relax Section */}
-        <section id="relax" className="mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <BookHeart className="h-6 w-6 text-primary" />
-            <h2 className="text-2xl font-bold">Relax & Recharge</h2>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-2">
-            <BreathingExercise />
-            <SimpleGame />
-          </div>
+          <OmexaChat />
         </section>
       </main>
       
@@ -280,7 +128,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center">
               <img 
-                src="/logo.png" 
+                src="/lovable-uploads/b892df5e-8b69-44ce-9072-53a4ed452941.png" 
                 alt="Omexa" 
                 className="h-8 w-auto"
               />
