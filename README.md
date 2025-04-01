@@ -1,11 +1,5 @@
 # Omexa: Your Personal AI Mentor and Friend
 
-Check the demo here: 
-**Omexa Demo**
-https://omexa.lovable.app/
-
-# Omexa: Your Personal AI Mentor and Friend
-
 Omexa is an AI-powered companion designed to support emotional well-being, boost self-confidence, and enhance personal growth. It provides personalized guidance through daily check-ins, situation readiness, and real-time advice.
 
 ## Features
