@@ -2,6 +2,9 @@
 
 Omexa is an AI-powered companion designed to support emotional well-being, boost self-confidence, and enhance personal growth. It provides personalized guidance through daily check-ins, situation readiness, and real-time advice.
 
+# Omexa demo:
+https://omexa-29.lovable.app/signup
+
 ## Features
 
 - **Emotional Support:** Daily check-ins and conversations.
